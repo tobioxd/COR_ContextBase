@@ -2,17 +2,17 @@ package com.example.demo.service;
 
 
 import com.example.demo.command.DoCheckRefNo;
-import com.example.demo.command.DoGetAccount;
+import com.example.demo.command.DoGetAccountByCode;
 import org.apache.commons.chain.impl.ChainBase;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GetAccountByIdNo extends ChainBase {
+public class GetAccountByCodeService extends ChainBase {
 
-    public GetAccountByIdNo() {
+    public GetAccountByCodeService() {
         super();
         addCommand(new DoCheckRefNo());
-        addCommand(new DoGetAccount());
+        addCommand(new DoGetAccountByCode());
     }
 
 }

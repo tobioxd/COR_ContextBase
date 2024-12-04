@@ -94,19 +94,20 @@ public class CustDao {
         return false;
     }
 
-    public static boolean updateAccount(Long id, String name ){
+    public static boolean updateAccount(String name, String code, String bankcd ){
 
         Connection connection = null;
         ResultSet rs = null;
         PreparedStatement proc = null;
 
-        String sql = "update MINH.BANK_ACCOUNT  set name = ? where id = ?";
+        String sql = "update MINH.BANK_ACCOUNT  set name = ? where code = ? and bank_cd = ?";
 
         try{
             connection = DataSourceConfiguration.getConnection();
             proc = connection.prepareStatement(sql);
             proc.setString(1, name);
-            proc.setLong(2, id);
+            proc.setString(2, code);
+            proc.setString(3, bankcd);
             return proc.executeUpdate() == 1 ;
         } catch (SQLException e) {
             e.printStackTrace();

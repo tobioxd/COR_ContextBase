@@ -1,4 +1,4 @@
-package com.example.demo.command;
+package com.example.demo.command.test;
 
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
