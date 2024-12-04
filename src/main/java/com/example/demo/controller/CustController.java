@@ -5,10 +5,7 @@ import com.example.demo.bean.base.Request;
 import com.example.demo.bean.base.Response;
 import com.example.demo.bean.request.CreateAccountRequest;
 import com.example.demo.bean.request.UpdateAccountRequest;
-import com.example.demo.bean.response.CreateAccountResponse;
-import com.example.demo.bean.response.CustResponse;
-import com.example.demo.bean.response.SimpleResult;
-import com.example.demo.bean.response.UpdateAccountResponse;
+import com.example.demo.bean.response.*;
 import com.example.demo.bean.result.ResponseCode;
 import com.example.demo.service.base.CustService;
 import org.springframework.web.bind.annotation.*;
@@ -91,6 +88,24 @@ public class CustController {
             resp.setResult(new SimpleResult("Update Account failed", false, ResponseCode.UNKNOWN));
         }
 
+        resp.setRefNo(resp.getRefNo());
+        return resp;
+    }
+
+    @RequestMapping(value = "/get/list", method = RequestMethod.GET)
+    public CustListResponse getbankAccountList(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int limit) {
+        CustListResponse resp = new CustListResponse();
+        Request request = new Request();
+        try{
+            request.setPage(page);
+            request.setLimit(limit);
+            CustService service = new CustService();
+            resp = service.getCustomerList(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         resp.setRefNo(resp.getRefNo());
         return resp;
     }

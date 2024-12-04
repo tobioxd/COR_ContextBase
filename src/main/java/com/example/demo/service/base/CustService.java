@@ -4,10 +4,7 @@ import com.example.demo.bean.base.ProcessContext;
 import com.example.demo.bean.base.Request;
 import com.example.demo.bean.base.Response;
 import com.example.demo.bean.response.*;
-import com.example.demo.service.GetAccountByCodeService;
-import com.example.demo.service.GetAccountByIdNoService;
-import com.example.demo.service.CreateAccountService;
-import com.example.demo.service.UpdateAccountService;
+import com.example.demo.service.*;
 
 public class CustService {
 
@@ -84,6 +81,26 @@ public class CustService {
         UpdateAccountResponse resp = new UpdateAccountResponse();
         resp.setRefNo(resp.getRefNo());
         resp.setResult(result);
+        return resp;
+    }
+
+    public CustListResponse getCustomerList(Request request){
+        ProcessContext context = new ProcessContext();
+        context.setRequest(request);
+        context.setResponse(new Response());
+        GetAccountListService service = new GetAccountListService();
+        try {
+            service.execute(context);
+        } catch (Exception e) {
+            e.printStackTrace();
+            context.setResult(SimpleResult.UNKNOWN);
+        }
+        Result result = context.getResult();
+        Response response = context.getResponse();
+        CustListResponse resp = new CustListResponse();
+        resp.setRefNo(resp.getRefNo());
+        resp.setResult(result);
+        resp.setCusts(response.getCusts());
         return resp;
     }
 

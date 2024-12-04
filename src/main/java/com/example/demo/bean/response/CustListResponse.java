@@ -1,8 +1,7 @@
-package com.example.demo.bean.base;
-
+package com.example.demo.bean.response;
 
 import com.example.demo.bean.Cust;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.example.demo.bean.base.BaseResponse;
 import lombok.*;
 
 import java.util.List;
@@ -13,9 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Response {
-
-    private Cust cust;
+public class CustListResponse extends BaseResponse {
 
     private List<Cust> custs;
 

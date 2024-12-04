@@ -23,4 +23,8 @@ public class Request {
 
     private String bankcode;
 
+    private int page;
+
+    private int limit;
+
 }

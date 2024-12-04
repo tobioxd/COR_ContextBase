@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustDao {
 
@@ -171,4 +173,51 @@ public class CustDao {
         return acct;
 
     }
+
+    public static List<Cust> getAccountsByPage(int page, int limit) {
+
+        List<Cust> accounts = new ArrayList<>();
+        Connection connection = null;
+        ResultSet rs = null;
+        PreparedStatement proc = null;
+
+        int startRow = (page - 1) * limit + 1;
+        int endRow = page * limit;
+
+        String sql = """
+            SELECT * 
+            FROM (
+                SELECT t.*, ROW_NUMBER() OVER (ORDER BY id) AS rnum
+                FROM MINH.BANK_ACCOUNT t
+            ) 
+            WHERE rnum BETWEEN ? AND ?
+        """;
+
+        try {
+            connection = DataSourceConfiguration.getConnection();
+            proc = connection.prepareStatement(sql);
+            proc.setInt(1, startRow);
+            proc.setInt(2, endRow);
+
+            rs = proc.executeQuery();
+
+            while (rs.next()) {
+                Cust acct = new Cust();
+                acct.setId(rs.getLong("id"));
+                acct.setBankcode(rs.getString("bank_cd"));
+                acct.setCode(rs.getString("code"));
+                acct.setName(rs.getString("name"));
+                acct.setRole(rs.getString("role"));
+                acct.setUsername(rs.getString("username"));
+                accounts.add(acct);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DataSourceConfiguration.realease(connection, proc, rs);
+        }
+
+        return accounts;
+    }
+
 }
