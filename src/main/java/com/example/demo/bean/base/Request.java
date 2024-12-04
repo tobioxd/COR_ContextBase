@@ -1,8 +1,6 @@
-package com.example.demo.bean;
+package com.example.demo.bean.base;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Data
@@ -11,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Cust {
+public class Request {
 
     private Long id;
 
@@ -23,8 +21,6 @@ public class Cust {
 
     private String name;
 
-    @JsonProperty("bank_cd")
     private String bankcode;
-
 
 }

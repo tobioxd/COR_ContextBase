@@ -1,6 +1,6 @@
-package com.example.demo.service;
+package com.example.demo.service.test;
 
-import com.example.demo.bean.ProcessContext;
+import com.example.demo.bean.base.ProcessContext;
 import org.springframework.stereotype.Service;
 
 @Service

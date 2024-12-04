@@ -1,0 +1,33 @@
+package com.example.demo.command;
+
+import com.example.demo.bean.base.ProcessContext;
+import com.example.demo.bean.base.Request;
+import com.example.demo.bean.base.Response;
+import com.example.demo.bean.response.Result;
+import com.example.demo.bean.response.SimpleResult;
+import com.example.demo.bean.result.ResponseCode;
+import com.example.demo.dao.CustDao;
+import org.apache.commons.chain.Command;
+import org.apache.commons.chain.Context;
+
+public class DoCheckAccountExisted implements Command {
+    @Override
+    public boolean execute(Context context) throws Exception {
+
+        ProcessContext processContext = (ProcessContext) context;
+        Result result = processContext.getResult();
+
+        Request request = processContext.getRequest();
+        Response response = processContext.getResponse();
+
+        String code = request.getCode();
+
+        if(CustDao.existAccount(code)){
+            result = new SimpleResult("Code exist already !", false, ResponseCode.TRANSACTION_FAIL);
+        }
+
+        processContext.setResult(result);
+        return !result.isOk();
+
+    }
+}

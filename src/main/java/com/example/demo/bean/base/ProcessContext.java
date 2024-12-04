@@ -1,5 +1,7 @@
-package com.example.demo.bean;
+package com.example.demo.bean.base;
 
+import com.example.demo.bean.Cust;
+import com.example.demo.bean.response.Result;
 import org.apache.commons.chain.impl.ContextBase;
 
 import java.util.HashMap;
@@ -45,11 +47,15 @@ public class ProcessContext extends ContextBase {
         this.result = result;
     }
 
-    public HashMap<String, Object> getVarRef() {
-        return varRef;
+    public void putVar(String key, Object value){
+        if(this.varRef.containsKey(key)){
+            this.varRef.remove(key, value);
+        }
+
+        this.varRef.put(key, value);
     }
 
-    public void setVarRef(HashMap<String, Object> varRef) {
-        this.varRef = varRef;
+    public Object getVar(String key){
+        return this.varRef.containsKey(key) ? this.varRef.get(key) : null;
     }
 }

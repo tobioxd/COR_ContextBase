@@ -1,4 +1,4 @@
-package com.example.demo.bean;
+package com.example.demo.bean.response;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.apache.commons.lang3.builder.RecursiveToStringStyle;

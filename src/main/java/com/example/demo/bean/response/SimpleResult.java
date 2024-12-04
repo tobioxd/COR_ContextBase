@@ -1,8 +1,6 @@
-package com.example.demo.bean;
+package com.example.demo.bean.response;
 
-import com.sun.source.doctree.SummaryTree;
-
-public class SimpleResult extends Result{
+public class SimpleResult extends Result {
 
     public static final Result OK = new SimpleResult("ok", true, "00");
     public static final Result UNKNOWN = new SimpleResult("UNKNOWN", false, "GW99");

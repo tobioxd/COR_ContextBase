@@ -1,20 +1,12 @@
 package com.example.demo;
 
-import com.example.demo.bean.ProcessContext;
-import com.example.demo.bean.Result;
-import com.example.demo.bean.SimpleResult;
-import com.example.demo.command.AuthCommand;
-import com.example.demo.command.BusinessLogicCommand;
-import com.example.demo.command.LoggingCommand;
-import com.example.demo.service.CheckProcess;
-import org.apache.commons.chain.Context;
-import org.apache.commons.chain.impl.ChainBase;
-import org.apache.commons.chain.impl.ContextBase;
+import com.example.demo.bean.base.ProcessContext;
+import com.example.demo.bean.response.SimpleResult;
+import com.example.demo.service.test.CheckProcess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
