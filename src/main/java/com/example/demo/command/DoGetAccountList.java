@@ -10,6 +10,7 @@ import com.example.demo.bean.result.ResponseCode;
 import com.example.demo.common.Constant;
 import com.example.demo.common.VarRef;
 import com.example.demo.dao.CustDao;
+import com.example.demo.log.AppLog;
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
 
@@ -19,6 +20,7 @@ import java.util.List;
 public class DoGetAccountList implements Command {
     @Override
     public boolean execute(Context context) throws Exception {
+        AppLog.info(((ProcessContext) context).getRequest() + " " + this.getClass().getSimpleName());
         ProcessContext processContext = (ProcessContext) context;
         Result result = SimpleResult.OK;
         Request request = processContext.getRequest();

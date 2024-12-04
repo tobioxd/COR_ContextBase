@@ -7,13 +7,14 @@ import com.example.demo.bean.response.Result;
 import com.example.demo.bean.response.SimpleResult;
 import com.example.demo.bean.result.ResponseCode;
 import com.example.demo.dao.CustDao;
+import com.example.demo.log.AppLog;
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
 
 public class DoCheckAccountExisted implements Command {
     @Override
     public boolean execute(Context context) throws Exception {
-
+        AppLog.info(((ProcessContext) context).getRequest() + " " + this.getClass().getSimpleName());
         ProcessContext processContext = (ProcessContext) context;
         Result result = processContext.getResult();
 
